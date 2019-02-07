@@ -1,0 +1,28 @@
+{
+  "name": "stark-baseproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.3",
+    "body-parser": "^1.18.3",
+    "connect-redis": "^3.4.0",
+    "cookie-parser": "^1.4.3",
+    "csurf": "^1.9.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-brute": "^1.0.1",
+    "express-session": "^1.15.6",
+    "lodash": "^4.17.11",
+    "mssql": "^4.3.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "redis": "^2.8.0",
+    "squel": "^5.12.2"
+  }
+}
