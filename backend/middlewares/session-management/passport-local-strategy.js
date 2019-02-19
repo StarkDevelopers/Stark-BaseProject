@@ -2,6 +2,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 const userFunctions = require('../../utils/users/userFunctions');
+const domains = require('../../config/domains');
 
 /**
  * Defining passport local strategy for Authenticating user at the time of login
@@ -17,7 +18,7 @@ function passportLocalStrategy () {
         const domain = username.split('@')[1]; // 'Test3012';
 
         // Server
-        const server = '139.59.0.106';
+        const server = domains[domain] ? domains[domain].server : '';
 
         username = username.split('@')[0];
 

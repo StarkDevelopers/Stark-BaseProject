@@ -1,6 +1,5 @@
 function logoutSequence(app) {
-    app.all('/auth/logout',
-    (req, res, next) => {
+    app.all('/auth/logout', (req, res, next) => {
         clearCookies(res);
 
         // Destroying session
@@ -12,7 +11,7 @@ function logoutSequence(app) {
         req.logout();
 
         res.redirect('/');
-    })
+    });
 }
 
 function clearCookies(res) {

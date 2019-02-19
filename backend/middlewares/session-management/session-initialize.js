@@ -2,8 +2,8 @@ const session = require('express-session');
 const passport = require('passport');
 const redisConnect = require('connect-redis')(session);
 
-const redisClient = require('../../helper/redis-helper/redis-initialize');
-const passportLocalStrategy = require('./passport-strategy');
+const redisClient = require('../../helpers/redis-helper/redis-initialize');
+const passportLocalStrategy = require('./passport-local-strategy');
 
 function initializeSession (app) {
     const redisStore = new redisConnect({

@@ -6,11 +6,21 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 // Project modules
-const initializeSession = require('./middleware/session-management/session-initialize');
-const initializeCSRFToken = require('./middleware/csrf-management/csrfToken');
-const loginSequence = require('./middleware/session-management/login-sequence');
-const logoutSequence = require('./middleware/session-management/logout-sequence');
-const staticResources = require('./middleware/static-resource-management/static-resource');
+const initializeSession = require('./middlewares/session-management/session-initialize');
+const initializeCSRFToken = require('./middlewares/csrf-management/csrf-token');
+const loginSequence = require('./middlewares/session-management/login-sequence');
+const logoutSequence = require('./middlewares/session-management/logout-sequence');
+const {
+    frontendResources,
+    staticResourcesFromUtility
+} = require('./middlewares/static-resource-management/static-resource');
+const registerRoutes = require('./middlewares/route-management/register-routes');
+const {
+    customErrorHandler,
+    csrfTokenErrorHandler
+} = require('./middlewares/error-handler/custom-error-handler');
+const initializeLogger = require('./base/logger/index');
+const Logger = require('./base/logger/logger');
 
 // Constants variables
 const isProduction = (process.env.NODE_ENV || 'development') === 'production';
@@ -21,25 +31,81 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(require('cookie-parser')());
 
+/**
+ * Sets up methods for different levels e.g. info, error on prototype of Logger
+ */
+Logger.setupMethods();
+
+/**
+ * Initializes default winston logger for console and file transports
+ * Overrides console methods with Winston transporter for Console
+ */
+initializeLogger();
+
+/**
+ * Initializes express-session with redis store
+ * Initialized passport and passport-session
+ * As well defines passport local-strategy for login
+ */
 initializeSession(app);
 
+/**
+ * Sets CSRF token in responses
+ * Checks CSRF token in incoming requests
+ */
 initializeCSRFToken(app);
 
+/**
+ * Logs in user with passport local-strategy
+ * Redirects to / or requested page
+ */
 loginSequence(app);
 
+/**
+ * Destroys user session from request
+ * Logs out user
+ * Redirects back to /
+ */
 logoutSequence(app);
 
-app.get('/', (req, res, next) => {
-    // res.sendFile(path.join(__dirname, 'client/index.html'));
-    console.log('req.isAuthenticated()', req.isAuthenticated());
+/**
+ * Login not required to access these resources
+ */
+staticResourcesFromUtility(app, __dirname);
+
+/**
+ * app.use(/) => This middleware will be called for all the requests on this server
+ * So user needs to be logged in to access all the resources/APIs from here on
+ */
+app.use('/', (req, res, next) => {
     if (!req.isAuthenticated()) {
-        res.render('login');
+        const redirectUrl = req.url;
+        res.render('login', { redirectUrl });
     } else {
         next();
     }
 });
 
-staticResources(app, __dirname);
+/**
+ * Registers routes related to features API
+ */
+registerRoutes(app);
+
+/**
+ * Login will be required to access these resources
+ */
+frontendResources(app, __dirname);
+
+/**
+ * Handles invalid CSRF token error
+ */
+app.use(csrfTokenErrorHandler());
+
+/**
+ * Handles error occured in Express routes/middleware
+ * or if next is called with error(object)
+ */
+app.use(customErrorHandler());
 
 /**
  * Uncaught Exception

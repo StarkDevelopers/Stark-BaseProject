@@ -3,6 +3,8 @@ const sql = require('mssql');
 const connectionPool = require('./connection-pool');
 const buildConfig = require('../../config/mssql-config');
 
+const domains = require('../../config/domains');
+
 class DBConnection {
     constructor () {}
 
@@ -42,7 +44,30 @@ class DBConnection {
             resolve(pool);
         }); 
     }
-}
 
+    async getUserConnection (request) {
+        const username = request.user.Username;
+        const domain = request.user.Domain;
+
+        const {server} = domains[domain];
+
+        const connectionKey = connectionPool.generateKey(server, username, domain);
+
+        let connection = connectionPool.get(connectionKey);
+
+        if (connection) {
+            return connection;
+        }
+
+        const {admin, password} = domains[domain];
+
+        return await this.getConnection(
+            server,
+            admin,
+            password,
+            domain
+        );
+    }
+}
 
 module.exports = new DBConnection();

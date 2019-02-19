@@ -25,7 +25,7 @@ class QueryExecutor {
 }
 
 function _replaceQueryParameters (query, params) {
-    if (!_.isArray(params)) {
+    if (!Array.isArray(params)) {
         console.error("_replaceQueryParameters: unexpected non param array", params);
         return query;
     }
@@ -42,7 +42,7 @@ function _replaceQueryParameters (query, params) {
             continue;
         }
 
-        if (_.isNumber(param)) {
+        if (!Number.isNaN(param)) {
             const parsedParam = getNumberTypeFromRange(param) === __QueryParamTypes.INT ? parseInt(param) : parseFloat(param);
             query = query.replace(PARAM_REGEX, PARAM_REPLACEMENT + parsedParam);
             continue;

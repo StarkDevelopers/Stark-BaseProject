@@ -19,8 +19,8 @@ class ConnectionPool {
         }
     }
 
-    generateKey (server, username, database) {
-        return database ? `${username}@${server}|${database}` : `${username}@${server}`;
+    generateKey (server, username, domain) {
+        return domain ? `${username}@${server}|${domain}` : `${username}@${server}`;
     }
 }
 
