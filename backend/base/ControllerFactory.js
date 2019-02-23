@@ -74,14 +74,14 @@ class ControllerFactory {
         return new APIContext(request, connection);
     }
 
-    create (method, argumentExpressions) {
+    create (method, ...argumentExpressions) {
         return async (request, response, next = () => {}) => {
 
             const context = await this.createContext(request);
 
             const logger = LoggerFactory.create(this.name, context);
 
-            const controller = new this.Controller(context, logger);
+            const controller = new this.Controller(context, logger, this.name);
 
             try {
                 const methodArguments = argumentExpressions.map(expression =>
@@ -93,9 +93,9 @@ class ControllerFactory {
                     controller.respondError(error, error.code);
                 } else {
                     let otherDetails = {};
-                    otherDetails.handledException = true;
-                    otherDetails.controllerName = this.controllerType.name;
-                    exceptionHandler.handleErrorLogs(error, otherDetails);
+                    // otherDetails.handledException = true;
+                    otherDetails.controllerName = this.Controller.name;
+                    // exceptionHandler.handleErrorLogs(error, otherDetails);
                     next(error);
                 }
             }

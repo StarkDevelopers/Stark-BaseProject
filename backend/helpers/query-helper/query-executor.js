@@ -1,3 +1,5 @@
+const { isNumber } = require('util');
+
 const sql = require('mssql');
 const _ = require('lodash');
 
@@ -42,7 +44,7 @@ function _replaceQueryParameters (query, params) {
             continue;
         }
 
-        if (!Number.isNaN(param)) {
+        if (isNumber(param)) {
             const parsedParam = getNumberTypeFromRange(param) === __QueryParamTypes.INT ? parseInt(param) : parseFloat(param);
             query = query.replace(PARAM_REGEX, PARAM_REPLACEMENT + parsedParam);
             continue;

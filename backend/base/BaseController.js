@@ -5,11 +5,14 @@ class BaseController {
     /**
      * @param {APIContext} context
      * @param {Logger} logger
+     * @param {string} feature
      */
-    constructor (context, logger) {
+    constructor (context, logger, feature) {
         this.context = context;
 
         this.logger = logger;
+
+        this.feature = feature;
     }
 
     /**

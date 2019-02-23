@@ -1,4 +1,4 @@
-middlewares = {};
+const middlewares = {};
 
 const PRIORITY = {
     low: 0,
@@ -10,7 +10,7 @@ class MiddlewareFactory {
     constructor () {}
 
     static register (id, middleware, priority) {
-        middleware[id] = {
+        middlewares[id] = {
             middleware,
             priority
         }

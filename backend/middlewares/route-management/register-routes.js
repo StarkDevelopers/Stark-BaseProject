@@ -2,9 +2,9 @@ const path = require('path');
 
 const glob = require('glob');
 
-function registerRoutes (app) {
+function registerRoutes (app, rootDirectory) {
     const indexFiles = glob.sync(
-        path.join(__dirname, 'features/**', '*.index.js')
+        path.join(rootDirectory, 'features/**', '*.index.js')
     );
 
     indexFiles.forEach((file) => {

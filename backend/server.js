@@ -15,6 +15,7 @@ const {
     staticResourcesFromUtility
 } = require('./middlewares/static-resource-management/static-resource');
 const registerRoutes = require('./middlewares/route-management/register-routes');
+const printRoutes = require('./middlewares/route-management/print-routes');
 const {
     customErrorHandler,
     csrfTokenErrorHandler
@@ -89,7 +90,12 @@ app.use('/', (req, res, next) => {
 /**
  * Registers routes related to features API
  */
-registerRoutes(app);
+registerRoutes(app, __dirname);
+
+/**
+ * Print out all the registered routes
+ */
+printRoutes(app);
 
 /**
  * Login will be required to access these resources

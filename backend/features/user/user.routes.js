@@ -5,16 +5,16 @@ const UserController = require('./user.controller');
 
 const createUserApi = {
     path: '/create',
-    verb: 'POST',
+    verb: 'GET',
     handler: {
         controller: UserController,
         method: 'create',
-        arguments: ['request:body']
+        methodArguments: ['request:body']
     },
     middlewares: {
-        authorization: 'admin:user:create',
-        decryption: 'Username,Name,Password,Email',
-        subscription: 'Free'
+        // authorization: 'admin:user:create',
+        // decryption: 'Username,Name,Password,Email',
+        // subscription: 'Free'
     },
     request: {
         body: {

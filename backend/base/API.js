@@ -3,7 +3,7 @@ const APIEndpoint = require('./APIEndpoint');
 const ControllerFactory = require('./ControllerFactory');
 const MiddlewareFactory = require('./MiddlewareFactory');
 
-const trim = (value) => String(value).replace(new RegExp(`^\*(.*?)\*$`), '$1');
+const trim = (value) => String(value).replace(new RegExp(`^/*(.*?)/*$`), '$1');
 
 class API {
     /**
@@ -37,7 +37,7 @@ class API {
     registerEndPoint (app, endPoint) {
         const path = trim(endPoint.path);
 
-        const route = `${this.parentPath}/${path}`;
+        const route = `/${this.parentPath}/${path}`;
 
         const verb = endPoint.verb.toLowerCase();
 
