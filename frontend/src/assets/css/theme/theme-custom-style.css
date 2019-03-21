@@ -2,3 +2,11 @@
 .navbar-nav .mega-dropdown-menu {
     width: auto;
 }
+
+.supportForm .form-group .form-control-label {
+    line-height: calc(2.75rem + 2px)
+}
+
+.supportForm .form-group #inputMessage1 {
+    min-height: calc(2.75rem + 2px);
+}
