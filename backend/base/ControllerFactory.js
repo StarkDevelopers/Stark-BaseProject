@@ -89,6 +89,7 @@ class ControllerFactory {
 
                 await controller[method].apply(controller, methodArguments);
             } catch (error) {
+                // Handle error - SQL Server Error
                 if (error instanceof CustomError) {
                     controller.respondError(error, error.code);
                 } else {

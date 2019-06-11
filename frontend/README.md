@@ -25,3 +25,9 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## proxy.conf.json
+target => Proxy to backend server
+changeOrigin => Using backend server which is not on same origin
+pathRewrite => While redirecting localhost:4200/api/* to localhost:8080/api if we want to
+remove api from redirecting url

@@ -1,6 +1,7 @@
 const dbConnection = require('../../helpers/db-helper/db-connection');
 const QueryBuilder = require('../../helpers/query-helper/query-builder');
 const buildConfig = require('../../config/mssql-config');
+const TABLES = require('../../base/Tables');
 
 async function login(server, username, password, domain, done) {
     let connection;
@@ -23,6 +24,7 @@ async function login(server, username, password, domain, done) {
     let user;
     try {
         user = await getUser(connection, username);
+        user.Domain = domain;
     } catch (error) {
         console.error('Error while fetching user detail');
         console.error('User', username);
@@ -47,23 +49,28 @@ async function login(server, username, password, domain, done) {
 }
 
 async function getUser(connection, username) {
-    let query = new QueryBuilder(connection, 'Users');
+    let query = new QueryBuilder(connection, TABLES.USER);
 
     query = query.select()
         .where('Username = ?', username);
 
     const user = await query.execute();
 
-    console.log('Logged in user detail ', user);
+    if (!user || user.length === 0) {
+        throw new Error('User not found');
+    }
 
-    return user;
+    console.log('Logged in user detail ', user[0]);
+
+    return user[0];
 }
 
 function serializeUser(user) {
     return {
         Id: user.Id,
         Username: user.Username,
-        Name: user.Name
+        Name: user.Name,
+        Domain: user.Domain
     };
 }
 

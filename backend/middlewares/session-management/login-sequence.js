@@ -38,7 +38,7 @@ function loginSequence(app) {
                         if (!info.message) {
                             info.message = 'No error message';
                         }
-                        console.error('Passport authenticate callback - error', info);
+                        console.error('Passport authenticate callback - error ', info);
                         return res.render('login', {
                             error: info
                         });

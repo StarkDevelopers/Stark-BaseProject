@@ -21,6 +21,13 @@ function frontendResources(app, rootDirectory) {
      * Serving static files in Express from client directory
      */
     app.use(express.static(path.join(rootDirectory, 'client')));
+
+    /**
+     * Serving Angular App for all other routes
+     */
+    app.get('*', function(req, res){
+        res.sendFile(path.join(rootDirectory, 'client', 'index.html'));
+    });
 }
 
 module.exports = {

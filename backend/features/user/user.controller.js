@@ -1,6 +1,6 @@
 const BaseController = require('../../base/BaseController');
 const UserService = require('./user.service');
-const Constants = require('../../base/constants');
+const Constants = require('../../base/Constants');
 
 class UserController extends BaseController {
     constructor (context, logger, feature) {
@@ -13,6 +13,12 @@ class UserController extends BaseController {
         await this.userService.create(user);
 
         this.respondOk(Constants.createMessage(this.feature));
+    }
+
+    async list () {
+        const users = await this.userService.list();
+
+        this.respondOk(users);
     }
 }
 

@@ -118,6 +118,9 @@ app.use(customErrorHandler());
  * For more information: https://nodejs.org/api/process.html#process_event_uncaughtexception
  */
 process.on('uncaughtException', (error) => {
+    /**
+     * Try your execution does not enter into this piece of code
+     */
     console.error('Uncaught Exception Caught \n', error);
     // Handle error here
 });
@@ -127,6 +130,9 @@ process.on('uncaughtException', (error) => {
  * For more information: https://nodejs.org/api/process.html#process_event_unhandledrejection
  */
 process.on('unhandledRejection', (reason, p) => {
+    /**
+     * Try your execution does not enter into this piece of code
+     */
     console.log('Unhandled Rejection at:', p, ' with reason:', reason);
     // Application specific logging, throwing an error, or other logic here
 });

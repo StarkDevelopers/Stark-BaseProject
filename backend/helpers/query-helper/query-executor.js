@@ -1,7 +1,7 @@
 const { isNumber } = require('util');
-
 const sql = require('mssql');
-const _ = require('lodash');
+
+const _ = require('../../utils/common/underscore');
 
 const PARAM_REGEX = /(=|in|<|>|like|between|values|,\s?|object_id)(\s)*(\(?)[?]/i;
 const PARAM_REPLACEMENT = '$1$2$3';
@@ -18,11 +18,17 @@ class QueryExecutor {
     }
 
     async execute (text, params) {
-        const query = _replaceQueryParameters(text, params);
+        try {
+            const query = _replaceQueryParameters(text, params);
+            const request = new sql.Request(this.connection);
+            const response = await request.query(query);
 
-        const request = new sql.Request(this.connection);
-
-        return await request.query(query);
+            const recordset = response.recordsets[0];
+            const result = _transformQueryResult(recordset, true);
+            return result;
+        } catch (exception) {
+            throw exception;
+        }
     }
 }
 
@@ -76,6 +82,44 @@ function escapeValues(valueString, questionMarkIdentifier) {
         return '';
 
     return String(valueString).replace(/'/g, '\'\'').replace(/\?/g, questionMarkIdentifier);
+}
+
+function _transformQueryResult(recordset, handleResult) {
+    var results = {};
+
+    if (handleResult === true) {
+        return returnRecordsFromRecordset(recordset);
+    }
+
+    results.rows = [];
+    if (recordset !== undefined) {
+        let k;
+        for (let p = 0; p < recordset.length; p++) {
+            let r = [];
+            for (k in recordset[p]) {
+                r.push(recordset[p][k]);
+            }
+            results.rows.push(r);
+        }
+        results.meta = [];
+        for (k in recordset.columns) {
+            results.meta.push(recordset.columns[k]);
+        }
+    }
+
+    return results;
+}
+
+function returnRecordsFromRecordset(recordset) {
+    if (!recordset) {
+        return [];
+    }
+
+    if (_.isArray(recordset)) {
+        return recordset;
+    } else {
+        return [recordset]
+    }
 }
 
 module.exports = QueryExecutor;

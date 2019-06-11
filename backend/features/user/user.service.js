@@ -1,17 +1,23 @@
 const BaseService = require('../../base/BaseService');
 const UserRepository = require('./user.repository');
+const TABLES = require('../../base/Tables');
 
 class UserService extends BaseService {
     constructor (context, logger) {
         super(context, logger);
 
-        this.userRepository = new UserRepository(context, logger);
+        this.userRepository = new UserRepository(context, logger, TABLES.USER);
     }
 
     async create (user) {
-        this.logger.info('Service Called');
+        await this.userRepository.createSystemUser(user);
+        delete user.Password;
 
-        await this.userRepository.create();
+        return await this.userRepository.create(user);
+    }
+
+    async list () {
+        return await this.userRepository.list();
     }
 }
 

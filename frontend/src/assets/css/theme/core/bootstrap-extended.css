@@ -169,10 +169,19 @@ pre code
 
 .example-container
 {
-    width: 800px;
     width: 100%;
-    margin-right: auto;
-    margin-left: auto; 
+    /* margin-right: auto;
+    margin-left: auto; */
+    padding-right: 15px;
+    padding-left: 15px;
+    display: block !important;
+}
+
+.example-container-inline
+{
+    width: 100%;
+    /* margin-right: auto;
+    margin-left: auto; */
     padding-right: 15px;
     padding-left: 15px;
 }
@@ -448,10 +457,12 @@ form .form-section i
 }
 form .form-actions
 {
-    margin-top: 20px; 
-    padding: 20px 0;
+    /* margin-right: auto;
+    margin-left: auto; */
+    padding-right: 15px;
+    padding-left: 15px;
 
-    border-top: 1px solid #d1d5ea;
+    /* border-top: 1px solid #d1d5ea; */
 }
 form .form-actions.filled
 {
@@ -1352,7 +1363,7 @@ select.form-control
 .header-navbar .navbar-header .navbar-brand
 {
     margin-right: 0; 
-    padding: 17px 0;
+    padding: 22px 0;
 }
 .header-navbar .navbar-header .navbar-brand .brand-logo
 {

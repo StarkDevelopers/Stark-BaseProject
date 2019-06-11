@@ -1,12 +1,347 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<!-- <a routerLink="/users">Users</a>
+<router-outlet></router-outlet> -->
+
+<nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-dark navbar-shadow">
+  <div class="navbar-wrapper">
+    <div class="navbar-header">
+      <ul class="nav navbar-nav flex-row position-relative">
+        <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs"
+            href="#"><i class="ft-menu font-large-1"></i></a></li>
+        <li class="nav-item mr-auto navbar-brand">
+            <h3 class="brand-text">Stark Mailer</h3>
+        </li>
+        <!-- <li class="nav-item d-none d-md-block nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i
+              class="toggle-icon ft-toggle-right font-medium-3 white" data-ticon="ft-toggle-right"></i></a></li> -->
+        <!-- <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i
+              class="la la-ellipsis-v"></i></a></li> -->
+      </ul>
+    </div>
+    <div class="navbar-container content">
+      <div class="collapse navbar-collapse" id="navbar-mobile">
+        <ul class="nav navbar-nav mr-auto float-left">
+        </ul>
+        <ul class="nav navbar-nav float-right">
+          <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i
+                class="ficon ft-bell"></i><span class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow">5</span></a>
+            <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+              <li class="dropdown-menu-header">
+                <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span></h6><span class="notification-tag badge badge-default badge-danger float-right m-0">5
+                  New</span>
+              </li>
+              <li class="scrollable-container media-list w-100"><a href="javascript:void(0)">
+                  <div class="media">
+                    <div class="media-left align-self-center"><i class="ft-plus-square icon-bg-circle bg-cyan"></i></div>
+                    <div class="media-body">
+                      <h6 class="media-heading">You have new order!</h6>
+                      <p class="notification-text font-small-3 text-muted">Lorem ipsum dolor
+                        sit amet, consectetuer elit.</p><small>
+                        <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">30
+                          minutes ago</time></small>
+                    </div>
+                  </div>
+                </a><a href="javascript:void(0)">
+                  <div class="media">
+                    <div class="media-left align-self-center"><i class="ft-download-cloud icon-bg-circle bg-red bg-darken-1"></i></div>
+                    <div class="media-body">
+                      <h6 class="media-heading red darken-1">99% Server load</h6>
+                      <p class="notification-text font-small-3 text-muted">Aliquam tincidunt
+                        mauris eu risus.</p><small>
+                        <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">Five
+                          hour ago</time></small>
+                    </div>
+                  </div>
+                </a><a href="javascript:void(0)">
+                  <div class="media">
+                    <div class="media-left align-self-center"><i class="ft-alert-triangle icon-bg-circle bg-yellow bg-darken-3"></i></div>
+                    <div class="media-body">
+                      <h6 class="media-heading yellow darken-3">Warning notifixation</h6>
+                      <p class="notification-text font-small-3 text-muted">Vestibulum auctor
+                        dapibus neque.</p><small>
+                        <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">Today</time></small>
+                    </div>
+                  </div>
+                </a><a href="javascript:void(0)">
+                  <div class="media">
+                    <div class="media-left align-self-center"><i class="ft-check-circle icon-bg-circle bg-cyan"></i></div>
+                    <div class="media-body">
+                      <h6 class="media-heading">Complete the task</h6><small>
+                        <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">Last
+                          week</time></small>
+                    </div>
+                  </div>
+                </a><a href="javascript:void(0)">
+                  <div class="media">
+                    <div class="media-left align-self-center"><i class="ft-file icon-bg-circle bg-teal"></i></div>
+                    <div class="media-body">
+                      <h6 class="media-heading">Generate monthly report</h6><small>
+                        <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">Last
+                          month</time></small>
+                    </div>
+                  </div>
+                </a></li>
+              <li class="dropdown-menu-footer"><a class="dropdown-item text-muted text-center" href="javascript:void(0)">Read
+                  all notifications</a></li>
+            </ul>
+          </li>
+          <li class="dropdown nav-item mega-dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Support</a>
+            <ul class="mega-dropdown-menu dropdown-menu row dropdown-menu-right">
+              <li class="col-md-12">
+                <h6 class="dropdown-menu-header text-uppercase mb-1"><i class="la la-envelope-o"></i>Contact Us</h6>
+                <form class="form form-horizontal supportForm" [formGroup]="supportForm">
+                  <div class="form-body">
+                    <div class="form-group row">
+                      <label class="col-sm-3 form-control-label" for="inputName1">Name</label>
+                      <div class="col-sm-9">
+                        <div class="position-relative has-icon-left">
+                          <input class="form-control" type="text" id="inputName1" placeholder="John Doe">
+                          <div class="form-control-position pl-1"><i class="la la-user"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-3 form-control-label" for="inputEmail1">Email</label>
+                      <div class="col-sm-9">
+                        <div class="position-relative has-icon-left">
+                          <input class="form-control" type="email" id="inputEmail1" placeholder="john@example.com">
+                          <div class="form-control-position pl-1"><i class="la la-envelope-o"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-3 form-control-label" for="inputMessage1">Message</label>
+                      <div class="col-sm-9">
+                        <div class="position-relative has-icon-left">
+                          <textarea class="form-control" id="inputMessage1" rows="2" placeholder="Simple Textarea"></textarea>
+                          <div class="form-control-position pl-1"><i class="la la-commenting-o"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12 mb-1">
+                        <button class="btn btn-info float-right" type="button"><i class="la la-paper-plane-o"></i>
+                          Send </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown dropdown-user nav-item">
+            <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"><span class="user-name text-bold-700">John
+                Doe</span><i></i></a>
+            <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#"><i class="ft-user"></i>
+                Edit Profile</a><a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item"
+                href="#"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="#"><i class="ft-message-square"></i>
+                Chats</a>
+              <div class="dropdown-divider"></div><a class="dropdown-item" href="/auth/logout"><i class="ft-power"></i>
+                Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
+  <div class="main-menu-content">
+    <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+      <li class="navigation-header"><span data-i18n="nav.category.admin">Admin</span><i class="undefined ft-minus"
+          data-toggle="tooltip" data-placement="right" data-original-title="Admin"></i>
+      </li>
+      <li class="nav-item"><a routerLink="/"><i class="la la-dashboard"></i><span class="menu-title" data-i18n="">Dashboard</span></a></li>
+      <li class="nav-item"><a routerLink="/users"><i class="la la-users"></i><span class="menu-title" data-i18n="">Users</span></a></li>
+      <!-- <li class=" nav-item"><a href="ecommerce-product-detail.html"><i class="la la-list"></i><span class="menu-title"
+            data-i18n="">Product Detail</span></a>
+      </li>
+      <li class=" nav-item"><a href="ecommerce-shopping-cart.html"><i class="la la-shopping-cart"></i><span class="menu-title"
+            data-i18n="">Shopping Cart</span></a>
+      </li>
+      <li class=" nav-item"><a href="ecommerce-checkout.html"><i class="la la-credit-card"></i><span class="menu-title"
+            data-i18n="">Checkout</span></a>
+      </li>
+      <li class=" nav-item"><a href="ecommerce-order.html"><i class="la la-check-circle-o"></i><span class="menu-title"
+            data-i18n="">Order</span></a>
+      </li> -->
+      <!-- <li class=" nav-item"><a href="#"><i class="la la-clipboard"></i><span class="menu-title" data-i18n="nav.invoice.main">Invoice</span></a>
+        <ul class="menu-content">
+          <li><a class="menu-item" href="invoice-summary.html" data-i18n="nav.invoice.invoice_summary">Invoice
+              Summary</a>
+          </li>
+          <li><a class="menu-item" href="invoice-template.html" data-i18n="nav.invoice.invoice_template">Invoice
+              Template</a>
+          </li>
+          <li><a class="menu-item" href="invoice-list.html" data-i18n="nav.invoice.invoice_list">Invoice
+              List</a>
+          </li>
+        </ul>
+      </li> -->
+      <!-- <li class=" navigation-header"><span data-i18n="nav.category.ui">User Interface</span><i class="undefined ft-minus"
+          data-toggle="tooltip" data-placement="right" data-original-title="User Interface"></i>
+      </li>
+      <li class=" nav-item"><a href="#"><i class="la la-server"></i><span class="menu-title" data-i18n="nav.components.main">Components</span></a>
+        <ul class="menu-content">
+          <li><a class="menu-item" href="component-alerts.html" data-i18n="nav.components.component_alerts">Alerts</a>
+          </li>
+          <li><a class="menu-item" href="component-callout.html" data-i18n="nav.components.component_callout">Callout</a>
+          </li>
+          <li><a class="menu-item" href="#" data-i18n="nav.components.components_buttons.main">Buttons</a>
+            <ul class="menu-content">
+              <li><a class="menu-item" href="component-buttons-basic.html" data-i18n="nav.components.components_buttons.component_buttons_basic">Basic
+                  Buttons</a>
+              </li>
+              <li><a class="menu-item" href="component-buttons-extended.html" data-i18n="nav.components.components_buttons.component_buttons_extended">Extended
+                  Buttons</a>
+              </li>
+            </ul>
+          </li>
+          <li><a class="menu-item" href="component-carousel.html" data-i18n="nav.components.component_carousel">Carousel</a>
+          </li>
+          <li><a class="menu-item" href="component-collapse.html" data-i18n="nav.components.component_collapse">Collapse</a>
+          </li>
+          <li><a class="menu-item" href="component-dropdowns.html" data-i18n="nav.components.component_dropdowns">Dropdowns</a>
+          </li>
+          <li><a class="menu-item" href="component-list-group.html" data-i18n="nav.components.component_list_group">List
+              Group</a>
+          </li>
+          <li><a class="menu-item" href="component-modals.html" data-i18n="nav.components.component_modals">Modals</a>
+          </li>
+          <li><a class="menu-item" href="component-pagination.html" data-i18n="nav.components.component_pagination">Pagination</a>
+          </li>
+          <li><a class="menu-item" href="component-navs-component.html" data-i18n="nav.components.component_navs_component">Navs
+              Component</a>
+          </li>
+          <li><a class="menu-item" href="component-tabs-component.html" data-i18n="nav.components.component_tabs_component">Tabs
+              Component</a>
+          </li>
+          <li><a class="menu-item" href="component-pills-component.html" data-i18n="nav.components.component_pills_component">Pills
+              Component</a>
+          </li>
+          <li><a class="menu-item" href="component-tooltips.html" data-i18n="nav.components.component_tooltips">Tooltips</a>
+          </li>
+          <li><a class="menu-item" href="component-popovers.html" data-i18n="nav.components.component_popovers">Popovers</a>
+          </li>
+          <li><a class="menu-item" href="component-badges.html" data-i18n="nav.components.component_badges">Badges</a>
+          </li>
+          <li><a class="menu-item" href="component-pill-badges.html">Pill Badges</a>
+          </li>
+          <li><a class="menu-item" href="component-progress.html" data-i18n="nav.components.component_progress">Progress</a>
+          </li>
+          <li><a class="menu-item" href="component-media-objects.html" data-i18n="nav.components.component_media_objects">Media
+              Objects</a>
+          </li>
+          <li><a class="menu-item" href="component-scrollable.html" data-i18n="nav.components.component_scrollable">Scrollable</a>
+          </li>
+          <li><a class="menu-item" href="component-spinners.html" data-i18n="nav.components.component_spinners">Spinners</a>
+          </li>
+        </ul>
+      </li> -->
+      <!-- <li class=" nav-item"><a href="#"><i class="la la-unlock"></i><span class="menu-title" data-i18n="nav.pages.main">Authentication</span></a>
+        <ul class="menu-content">
+          <li><a class="menu-item" href="login-with-bg-image.html">Login</a>
+          </li>
+          <li><a class="menu-item" href="register-with-bg-image.html">SignIn</a>
+          </li>
+          <li><a class="menu-item" href="recover-password.html">Forgot Password</a>
+          </li>
+        </ul>
+      </li> -->
+      <!-- <li class=" nav-item"><a href="#"><i class="la la-file-text"></i><span class="menu-title" data-i18n="nav.form_layouts.main">Form
+            Layouts</span></a>
+        <ul class="menu-content">
+          <li><a class="menu-item" href="form-layout-basic.html" data-i18n="nav.form_layouts.form_layout_basic">Basic
+              Forms</a>
+          </li>
+          <li><a class="menu-item" href="form-layout-horizontal.html" data-i18n="nav.form_layouts.form_layout_horizontal">Horizontal
+              Forms</a>
+          </li>
+          <li><a class="menu-item" href="form-layout-hidden-labels.html" data-i18n="nav.form_layouts.form_layout_hidden_labels">Hidden
+              Labels</a>
+          </li>
+          <li><a class="menu-item" href="form-layout-form-actions.html" data-i18n="nav.form_layouts.form_layout_form_actions">Form
+              Actions</a>
+          </li>
+          <li><a class="menu-item" href="form-layout-row-separator.html" data-i18n="nav.form_layouts.form_layout_row_separator">Row
+              Separator</a>
+          </li>
+          <li><a class="menu-item" href="form-layout-bordered.html" data-i18n="nav.form_layouts.form_layout_bordered">Bordered</a>
+          </li>
+          <li><a class="menu-item" href="form-layout-striped-rows.html" data-i18n="nav.form_layouts.form_layout_striped_rows">Striped
+              Rows</a>
+          </li>
+          <li><a class="menu-item" href="form-layout-striped-labels.html" data-i18n="nav.form_layouts.form_layout_striped_labels">Striped
+              Labels</a>
+          </li>
+        </ul>
+      </li> -->
+      <!-- <li class=" nav-item"><a href="#"><i class="la la-paste"></i><span class="menu-title" data-i18n="nav.form_wizard.main">Form
+            Wizard</span></a>
+        <ul class="menu-content">
+          <li><a class="menu-item" href="form-wizard-circle-style.html" data-i18n="nav.form_wizard.form_wizard_circle_style">Circle
+              Style</a>
+          </li>
+          <li><a class="menu-item" href="form-wizard-notification-style.html" data-i18n="nav.form_wizard.form_wizard_notification_style">Notification
+              Style</a>
+          </li>
+        </ul>
+      </li> -->
+      <!-- <li class=" nav-item"><a href="#"><i class="la la-table"></i><span class="menu-title" data-i18n="nav.bootstrap_tables.main">Bootstrap
+            Tables</span></a>
+        <ul class="menu-content">
+          <li><a class="menu-item" href="table-basic.html" data-i18n="nav.bootstrap_tables.table_basic">Basic
+              Tables</a>
+          </li>
+          <li><a class="menu-item" href="table-border.html" data-i18n="nav.bootstrap_tables.table_border">Table
+              Border</a>
+          </li>
+          <li><a class="menu-item" href="table-sizing.html" data-i18n="nav.bootstrap_tables.table_sizing">Table
+              Sizing</a>
+          </li>
+          <li><a class="menu-item" href="table-styling.html" data-i18n="nav.bootstrap_tables.table_styling">Table
+              Styling</a>
+          </li>
+          <li><a class="menu-item" href="table-components.html" data-i18n="nav.bootstrap_tables.table_components">Table
+              Components</a>
+          </li>
+        </ul>
+      </li> -->
+      <!-- <li class=" nav-item"><a href="#"><i class="la la-area-chart"></i><span class="menu-title" data-i18n="nav.chartjs.main">Chartjs</span></a>
+        <ul class="menu-content">
+          <li><a class="menu-item" href="chartjs-line-charts.html" data-i18n="nav.chartjs.chartjs_line_charts">Line
+              charts</a>
+          </li>
+          <li><a class="menu-item" href="chartjs-bar-charts.html" data-i18n="nav.chartjs.chartjs_bar_charts">Bar
+              charts</a>
+          </li>
+          <li><a class="menu-item" href="chartjs-pie-doughnut-charts.html" data-i18n="nav.chartjs.chartjs_pie_doughnut_charts">Pie
+              &amp; Doughnut charts</a>
+          </li>
+          <li><a class="menu-item" href="chartjs-scatter-charts.html" data-i18n="nav.chartjs.chartjs_scatter_charts">Scatter
+              charts</a>
+          </li>
+          <li><a class="menu-item" href="chartjs-polar-radar-charts.html" data-i18n="nav.chartjs.chartjs_polar_radar_charts">Polar
+              &amp; Radar charts</a>
+          </li>
+          <li><a class="menu-item" href="chartjs-advance-charts.html" data-i18n="nav.chartjs.chartjs_advance_charts">Advance
+              charts</a>
+          </li>
+        </ul>
+      </li> -->
+    </ul>
+  </div>
 </div>
-<h2>Here is nothing...: </h2>
 
-<input type="text" name="name"/>
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row">
+    </div>
+    <div class="content-body">
 
+      <!-- Page goes here-->
+      <router-outlet></router-outlet>
+      <!-- Page goes here-->
 
+    </div>
+  </div>
+</div>

@@ -22,6 +22,10 @@
               "src/favicon.ico"
             ],
             "styles": [
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "src/assets/css/theme/custom/stark-theme.scss",
               "src/assets/css/theme/vendor/bootstrap.css",
               "src/assets/css/theme/vendor/line-awesome/line-awesome.min.css",
               "src/assets/css/theme/vendor/feather/feather.min.css",

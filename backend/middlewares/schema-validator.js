@@ -11,13 +11,15 @@ async function validator (schema, req, res, next) {
         next();
     } catch (error) {
         // Throw Invalid Schema Error
-        
-        // let message;
-        // if (error.details && error.details.length > 0) {
-        //     message = error.details[0].message && error.details[0].message.length < 60 ?
-        //         error.details[0].message :
-        //         error.details[0].path[0] + ' is invalid';
-        // }
+        let message;
+        if (error.details && error.details.length > 0) {
+            message = error.details[0].message && error.details[0].message.length < 60 ?
+                error.details[0].message :
+                error.details[0].path[0] + ' is invalid';
+        } else {
+            message = error;
+        }
+        next(message);
     }
 }
 
