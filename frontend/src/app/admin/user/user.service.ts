@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { User } from './user';
+import { User, UserApi } from './user';
+import { SubjectService } from 'src/app/common/subjects/subject.service';
 
 @Injectable()
-export class UserService {
+export class UserService implements SubjectService {
   url: string = '/api/user';
 
   constructor(private http: HttpClient) { }
@@ -14,7 +15,15 @@ export class UserService {
     return this.http.post<User>(this.url, user);
   }
 
-  listUser(): Observable<User> {
-    return this.http.get<User>(this.url);
+  list(sortBy: string, sortType: string, pageIndex: number,
+    pageSize: number, filter: string): Observable<UserApi> {
+    return this.http.get<UserApi>(this.url, {
+      params: new HttpParams()
+        .set('filter', filter)
+        .set('sortBy', sortBy)
+        .set('sortType', sortType)
+        .set('pageIndex', pageIndex.toString())
+        .set('pageSize', pageSize.toString())
+  });
   }
 }

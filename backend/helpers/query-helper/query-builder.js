@@ -20,10 +20,10 @@ class QueryBuilder {
             return;
 
         // Override squel flavor
-        // const driverType = 'mssql';
-        // const flavor = require('../lib/db/mssql/flavor');
-        // squel.flavours[driverType] = flavor.getFlavor(squel);
-        // squel.useFlavour(driverType);
+        const driverType = 'mssql';
+        const flavor = require('./flavor');
+        squel.flavours[driverType] = flavor.getFlavor(squel);
+        squel.useFlavour(driverType);
 
         //setting squel properties
         squel.cls.DefaultQueryBuilderOptions.autoQuoteTableNames = false;
@@ -198,7 +198,7 @@ class QueryBuilder {
     }
 
     offset(limit, offset) {
-        this.query = this.query.offset(offset).fetch(limit);
+        this.query = this.query.offset(offset).limit(limit);
 
         return this;
     }
@@ -333,6 +333,12 @@ class QueryBuilder {
             .newName(newTableName);
 
         return this;
+    }
+
+    clone() {
+        const cloneQuery = new QueryBuilder(this.connection, this.table);
+        cloneQuery.query = this.query.clone();
+        return cloneQuery;
     }
 }
 

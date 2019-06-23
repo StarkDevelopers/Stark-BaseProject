@@ -1,0 +1,34 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade" *ngIf="data.loading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+
+<table mat-table [dataSource]="data" class="mat-elevation-z8" matSort>
+
+  <!--
+    [disabled] for disabling sort
+  -->
+  <ng-container [matColumnDef]="column" *ngFor="let column of showColumns">
+    <th mat-header-cell *matHeaderCellDef
+      mat-sort-header [disabled]="sortColumns.indexOf(column) > -1 ? false : true">
+      {{column | uppercase}}
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Action">
+    <th mat-header-cell *matHeaderCellDef>ACTION</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+</table>
+<mat-paginator [length]="data.count$ | async" [pageSizeOptions]="[5, 10, 25, 100]"
+  showFirstLastButtons></mat-paginator>

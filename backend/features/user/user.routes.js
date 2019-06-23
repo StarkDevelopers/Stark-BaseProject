@@ -36,11 +36,17 @@ const listUsersApi = {
     handler: {
         controller: UserController,
         method: 'list',
-        methodArguments: []
+        methodArguments: ['request:query']
     },
     middlewares: {},
     request: {
-        query: {}
+        query: {
+            filter: Joi.string().allow('', null).required(),
+            sortBy: Joi.string().allow('', null).required(),
+            sortType: Joi.string().allow('', null).required(),
+            pageIndex: Joi.number().required(),
+            pageSize: Joi.number().required()
+        }
     }
 }
 

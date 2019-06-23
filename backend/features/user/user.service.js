@@ -16,8 +16,8 @@ class UserService extends BaseService {
         return await this.userRepository.create(user);
     }
 
-    async list () {
-        return await this.userRepository.list();
+    async list (query) {
+        return await this.userRepository.list(query);
     }
 }
 

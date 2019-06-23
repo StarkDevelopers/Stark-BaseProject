@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { UserService } from './user.service';
+import { UserService } from '../user.service';
 
 function PasswordValidator(control: AbstractControl): { [key: string]: boolean } | null {
   if (control.value) {
@@ -22,11 +22,11 @@ function PasswordValidator(control: AbstractControl): { [key: string]: boolean }
 }
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
+  selector: 'user-manage',
+  templateUrl: './user.manage.component.html',
   styleUrls: []
 })
-export class UserComponent implements OnInit {
+export class UserManageComponent implements OnInit {
   userForm = new FormGroup({
     Name: new FormControl('', [Validators.required]),
     Email: new FormControl('', [Validators.required, Validators.email]),

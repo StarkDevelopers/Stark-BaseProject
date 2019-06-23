@@ -15,8 +15,8 @@ class UserController extends BaseController {
         this.respondOk(Constants.createMessage(this.feature));
     }
 
-    async list () {
-        const users = await this.userService.list();
+    async list (query) {
+        const users = await this.userService.list(query);
 
         this.respondOk(users);
     }

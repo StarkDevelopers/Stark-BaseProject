@@ -21,12 +21,44 @@ class BaseRepository {
         return await query.execute();
     }
 
-    async list () {
-        let query = new QueryBuilder(this.context.connection, this.feature);
+    async list (options) {
+        let query = new QueryBuilder(this.context.connection, this.feature)
+            .select();
 
-        query = query.select();
+        if (options.filter) {
+            query = query.where('UserName like ?', `%${options.filter}%`);
+        }
+        if (options.sortBy) {
+            const direction = options.sortType ? options.sortType : 'ASC';
+            query = query.sortByWithDirection(options.sortBy, direction);
+        }
+        if (options.pageIndex && options.pageSize && !options.sortBy) {
+            query = query.sortBy('(SELECT null)');
+            query = query.offset(options.pageSize, options.pageIndex * options.pageSize);
+        } else if (options.pageIndex && options.pageSize) {
+            query = query.offset(options.pageSize, options.pageIndex * options.pageSize);
+        } else if (options.pageSize) {
+            query = query.limit(options.pageSize);
+        }
 
-        return await query.execute();
+        const items = await query.execute();
+
+        let total = await new QueryBuilder(this.context.connection, this.feature)
+            .select()
+            .count()
+            .execute();
+
+        if (total && total.length > 0 && total[0].Count) {
+            total = total[0].Count;
+        } else {
+            // Change it to show appropriate message
+            total = 0;
+        }
+
+        return {
+            items,
+            total
+        };
     }
 }
 
