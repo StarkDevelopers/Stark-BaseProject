@@ -14,8 +14,14 @@ class ConnectionPool {
     }
 
     register (key, connection) {
-        if (key && connection && !connections[key]) {
+        if (key && connection && connection._connected && connection.connected) {
             connections[key] = connection;
+        }
+    }
+
+    unregister (key) {
+        if (key && connections[key]) {
+            connections[key] = null;
         }
     }
 

@@ -15,23 +15,17 @@
     padding: 0px;
 }
 
-/* .example-container {
-    position: relative;
-    min-height: 200px;
-} */
-  
-/* .example-table-container {
-    position: relative;
-    max-height: 400px;
-    overflow: auto;
-} */
-
 .example-container > * {
     width: 100%;
 }
 
+.mat-card-content, .mat-card-title {
+    padding-left: 15px;
+}
+
 .form-actions {
-    padding-top: 10px;
+    padding-left: 0px !important;
+    padding-top: 15px;
 }
 
 table {
@@ -49,4 +43,8 @@ table {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+button:focus {
+    outline: none;
 }

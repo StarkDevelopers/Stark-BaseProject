@@ -13,6 +13,9 @@ const appRoutes: Routes = [
     },
     {
         path: 'user/manage', component: UserManageComponent
+    },
+    {
+        path: 'user/manage/:id', component: UserManageComponent
     }
 ];
 

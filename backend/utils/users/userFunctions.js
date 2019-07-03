@@ -25,6 +25,7 @@ async function login(server, username, password, domain, done) {
     try {
         user = await getUser(connection, username);
         user.Domain = domain;
+        user.Server = server;
     } catch (error) {
         console.error('Error while fetching user detail');
         console.error('User', username);
@@ -70,7 +71,8 @@ function serializeUser(user) {
         Id: user.Id,
         Username: user.Username,
         Name: user.Name,
-        Domain: user.Domain
+        Domain: user.Domain,
+        Server: user.Server
     };
 }
 

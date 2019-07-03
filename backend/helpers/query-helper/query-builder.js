@@ -268,6 +268,11 @@ class QueryBuilder {
         return this;
     }
 
+    setFields(fields) {
+        this.query = this.query.setFields(fields);
+        return this;
+    }
+
     removeWhere(whereClause, outputFields) {
         this.query = squel
             .delete()

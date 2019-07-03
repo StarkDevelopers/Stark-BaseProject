@@ -13,7 +13,15 @@
         <mat-form-field class="example-container col-md-6">
           <input matInput placeholder="Email*" formControlName="Email">
         </mat-form-field>
-        <mat-form-field class="example-container col-md-6">
+        <mat-slide-toggle
+            color="primary"
+            [(ngModel)]="changePassword"
+            [ngModelOptions]="{standalone: true}"
+            *ngIf="id"
+            (change)="onChangePassowrd($event)">
+          Change Password
+        </mat-slide-toggle>
+        <mat-form-field class="example-container col-md-6" *ngIf="!id || changePassword">
           <input type="password" matInput placeholder="Password*" formControlName="Password">
           <mat-hint *ngIf="!userForm.controls['Password'].dirty &&
             !userForm.controls['Password'].touched">

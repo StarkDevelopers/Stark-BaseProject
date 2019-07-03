@@ -21,6 +21,16 @@ class BaseRepository {
         return await query.execute();
     }
 
+    async update (object, id) {
+        let query = new QueryBuilder(this.context.connection, this.feature);
+
+        query = query.update()
+            .setFields(object)
+            .where('Id = ?', id);
+
+        return await query.execute();
+    }
+
     async list (options) {
         let query = new QueryBuilder(this.context.connection, this.feature)
             .select();
@@ -59,6 +69,26 @@ class BaseRepository {
             items,
             total
         };
+    }
+
+    async get (id) {
+        let query = new QueryBuilder(this.context.connection, this.feature)
+            .select()
+            .where('Id = ?', id);
+
+        const users = await query.execute();
+
+        return users[0];
+    }
+
+    async delete (id) {
+        let query = new QueryBuilder(this.context.connection, this.feature)
+            .removeWhere({
+                condition: 'Id = ?',
+                parameter: id
+            })
+
+        return await query.execute();
     }
 }
 

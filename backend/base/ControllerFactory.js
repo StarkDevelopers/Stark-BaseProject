@@ -91,7 +91,9 @@ class ControllerFactory {
             } catch (error) {
                 // Handle error - SQL Server Error
                 if (error instanceof CustomError) {
-                    controller.respondError(error, error.code);
+                    controller.respond(error.status, {
+                        message: error.message
+                    });
                 } else {
                     let otherDetails = {};
                     // otherDetails.handledException = true;

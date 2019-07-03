@@ -13,7 +13,7 @@ class DBConnection {
 
         let connection = connectionPool.get(connectionKey);
 
-        if (connection) {
+        if (connection && connection._connected && connection.connected) {
             return connection;
         }
 
@@ -67,6 +67,12 @@ class DBConnection {
             password,
             domain
         );
+    }
+
+    removeConnection(server, username, database) {
+        const connectionKey = connectionPool.generateKey(server, username, database);
+
+        connectionPool.unregister(connectionKey);
     }
 }
 
